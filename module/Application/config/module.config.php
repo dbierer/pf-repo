@@ -80,6 +80,7 @@ return array(
             'application-entity-customer'          => 'Application\Entity\Customer',
             'application-service-customer'         => 'Application\Service\CustomerService',
             'application-doctrine-listener'        => 'Application\Listeners\DoctrineListener',
+            'application-html-compress-listener'   => 'Application\Listeners\HtmlCompressionListener',
         ),
         'factories' => array(
             'ProfileFieldset'    => 'Application\Factory\FormProfileFactory',
@@ -105,6 +106,7 @@ return array(
     ),
     'listeners' => array(
         'application-doctrine-listener',
+        'application-html-compress-listener',
     ),
     'translator' => array(
         'locale' => 'en_US',

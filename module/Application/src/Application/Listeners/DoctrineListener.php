@@ -11,7 +11,8 @@ use Zend\EventManager\ListenerAggregateTrait;
 class DoctrineListener implements ListenerAggregateInterface
 {
     
-    const EVENT_DOCTRINE_ON_FLUSH  = 'event.doctrine.onFlush';
+    const EVENT_DOCTRINE_ON_FLUSH   = 'event.doctrine.onFlush';
+    const EVENT_DOCTRINE_PRE_UPDATE = 'event.doctrine.preUpdate';
     const EVENT_DOCTRINE_IDENTIFIER = 'event.doctrine.identifier';
     
     use ListenerAggregateTrait;

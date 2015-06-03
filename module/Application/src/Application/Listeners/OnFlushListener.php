@@ -1,20 +1,14 @@
 <?php
 namespace Application\Listeners;
 
-use Doctrine\ORM\Event\OnFlushEventArgs;
 use Application\Listeners\DoctrineListener;
 use Zend\EventManager\EventManager;
+use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 
 // example of an event listener
 class OnFlushListener 
 {
-    
-    protected $logFile;
-    
-    public function __construct()
-    {
-        $this->logFile = __DIR__ . '/../../data/logs/on_flush_listener.log';
-    }
     
     public function onFlush(OnFlushEventArgs $args)
     {
@@ -22,9 +16,10 @@ class OnFlushListener
         $em->trigger(DoctrineListener::EVENT_DOCTRINE_ON_FLUSH, $this, array('onFlushEventArgs' => $args));
     }    
     
-    public function dumpLog()
+    public function preUpdate(PreUpdateEventArgs $args)
     {
-        return file_get_contents($this->logFile);
+        $em = new EventManager(DoctrineListener::EVENT_DOCTRINE_IDENTIFIER);
+        $em->trigger(DoctrineListener::EVENT_DOCTRINE_PRE_UPDATE, $this, array('onFlushEventArgs' => $args));
     }
     
 }

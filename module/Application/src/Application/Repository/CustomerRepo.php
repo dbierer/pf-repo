@@ -29,7 +29,9 @@ class CustomerRepo extends EntityRepository
         $x = 0;
         $data = $customer->getPurchases();
         foreach ($data as $purchase) {
-            $customer->setOnePurchase($this->getHydrator()->hydrate($purchase, new Purchases()), $x++);
+            $entity = $this->getHydrator()->hydrate($purchase, new Purchases());
+            $entity->setCustomer($customer);
+            $customer->setOnePurchase($entity, $x++);
         }
         return $customer;
     }

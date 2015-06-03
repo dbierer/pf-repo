@@ -16,7 +16,7 @@ use Doctrine\ORM\Events;
 
 // get event manager instance + listener
 $evm = new EventManager();
-$evm->addEventListener(array(Events::onFlush), new OnFlushListener());
+$evm->addEventListener(array(Events::onFlush, Events::prePersist), new OnFlushListener());
 
 $driver = new AnnotationDriver(new AnnotationReader(), $paths);
 AnnotationRegistry::registerLoader('class_exists');

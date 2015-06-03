@@ -6,6 +6,7 @@ use Zend\Form\Annotation as ANO;
 
 /**
  * @ANO\Name("customer")
+ * @ORM\HasLifecycleCallbacks
  * @ANO\Hydrator("Zend\Stdlib\Hydrator\ClassMethods")
  * @ORM\Entity("Application\Entity\Customer")
  * @ORM\Table("customer")

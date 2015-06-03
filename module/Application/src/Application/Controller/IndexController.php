@@ -28,10 +28,15 @@ class IndexController extends AbstractActionController
                 
     public function indexAction()
     {
-        $em1 = $this->getEventManager();
-        $em1->addIdentifiers(DoctrineListener::EVENT_DOCTRINE_IDENTIFIER);
-        $em1->trigger(DoctrineListener::EVENT_DOCTRINE_PRE_FLUSH, $this, array('a' => 'A', 'b' => 'C', 'em' => $em1));    
-        return new ViewModel(array('test' => $this->getTest()));
+        $leftView = new ViewModel(array('test' => 'LEFT TEST'));
+        $leftView->setTemplate('application/index/left');
+        $topView  = new ViewModel(array('test' => 'TOP TEST'));
+        $topView->setTemplate('application/index/top');
+        $mainView = new ViewModel(array('test' => 'MAIN'));
+        $mainView->addChild($topView, 'top'); 
+        $mainView->addChild($leftView, 'left'); 
+        $mainView->setTemplate('application/index/main');
+        return $mainView;
     }
 
     public function formAnnotationAction()
